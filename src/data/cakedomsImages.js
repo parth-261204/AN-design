@@ -1,0 +1,18 @@
+export const cakedomsImages = [
+  "/production-hub/product-doc-images/cakedoms/cakedoms-001.jpeg",
+  "/production-hub/product-doc-images/cakedoms/cakedoms-002.wdp",
+  "/production-hub/product-doc-images/cakedoms/cakedoms-003.png",
+  "/production-hub/product-doc-images/cakedoms/cakedoms-004.wdp",
+  "/production-hub/product-doc-images/cakedoms/cakedoms-005.png",
+  "/production-hub/product-doc-images/cakedoms/cakedoms-006.wdp",
+  "/production-hub/product-doc-images/cakedoms/cakedoms-007.png",
+  "/production-hub/product-doc-images/cakedoms/cakedoms-008.wdp",
+  "/production-hub/product-doc-images/cakedoms/cakedoms-009.png",
+  "/production-hub/product-doc-images/cakedoms/cakedoms-010.jpeg",
+  "/production-hub/product-doc-images/cakedoms/cakedoms-011.png",
+  "/production-hub/product-doc-images/cakedoms/cakedoms-012.png",
+  "/production-hub/product-doc-images/cakedoms/cakedoms-013.png",
+  "/production-hub/product-doc-images/cakedoms/cakedoms-014.png",
+  "/production-hub/product-doc-images/cakedoms/cakedoms-015.jpeg",
+  "/production-hub/product-doc-images/cakedoms/cakedoms-016.jpeg",
+]
