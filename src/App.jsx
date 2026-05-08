@@ -423,8 +423,6 @@ const ANDesignsPage = () => {
                 <div className="mt-3 flex flex-wrap justify-center gap-2">
                   <a
                     href={getProductDetailHref(item)}
-                    target="_blank"
-                    rel="noopener noreferrer"
                     className="rounded-full px-4 py-2 bg-gray-900 text-white hover:bg-[#c8922a] transition-colors text-center"
                     style={{ fontFamily: "'Cinzel', serif", fontSize: 11, letterSpacing: "0.14em" }}
                   >
@@ -433,8 +431,6 @@ const ANDesignsPage = () => {
                   {getProductPdfHref(item) ? (
                     <a
                       href={getProductPdfHref(item)}
-                      target="_blank"
-                      rel="noopener noreferrer"
                       className="rounded-full px-4 py-2 bg-[#c8922a] text-white hover:bg-gray-900 transition-colors text-center shadow-sm"
                       style={{ fontFamily: "'Cinzel', serif", fontSize: 11, letterSpacing: "0.14em" }}
                     >
