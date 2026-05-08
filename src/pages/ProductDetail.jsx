@@ -1,12 +1,23 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { productCards } from "../data/products.js";
 
 const ProductDetail = () => {
   const { slug } = useParams();
+  const location = useLocation();
+  const navigate = useNavigate();
   const product = productCards.find((p) => p.slug === slug);
+  const cameFromProducts = Boolean(location.state?.fromProducts);
   const documentViewSlugs = ["basket", "cake-stand", "candle-holders", "candle-sticks", "chopping-board", "napkin-rings", "vase", "xmas-deco", "pots", "cakedoms", "bowls", "furniture", "sculptures", "trays", "stool", "zinc-pots"];
   const getProductPdfHref = (item) =>
     item.pdfViewHref ?? (documentViewSlugs.includes(item.slug) ? `/product/${item.slug}/document-view` : null);
+  const continueBrowsing = () => {
+    if (cameFromProducts) {
+      navigate(-1);
+      return;
+    }
+
+    navigate("/");
+  };
 
   if (!product) {
     return (
@@ -159,8 +170,9 @@ const ProductDetail = () => {
                   View All Images
                 </Link>
               ) : null}
-              <Link
-                to="/"
+              <button
+                type="button"
+                onClick={continueBrowsing}
                 className="rounded-full px-7 py-3 border border-gray-300 text-gray-800 hover:bg-gray-100 transition-colors"
                 style={{
                   fontFamily: "'Cinzel',serif",
@@ -169,10 +181,11 @@ const ProductDetail = () => {
                 }}
               >
                 Continue Browsing
-              </Link>
+              </button>
               {getProductPdfHref(product) ? (
                 <Link
                   to={getProductPdfHref(product)}
+                  state={{ fromProducts: cameFromProducts, backDelta: cameFromProducts ? -2 : undefined }}
                   className="rounded-full px-7 py-3 border border-[#c8922a] text-[#a8751d] hover:bg-[#c8922a] hover:text-white transition-colors"
                   style={{
                     fontFamily: "'Cinzel',serif",

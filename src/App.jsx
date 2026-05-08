@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { productCards } from "./data/products.js";
 
 const SearchIcon = ({ size = 18, color = "currentColor" }) => (
@@ -421,21 +421,23 @@ const ANDesignsPage = () => {
                   {item.label}
                 </span>
                 <div className="mt-3 flex flex-wrap justify-center gap-2">
-                  <a
-                    href={getProductDetailHref(item)}
+                  <Link
+                    to={getProductDetailHref(item)}
+                    state={{ fromProducts: true }}
                     className="rounded-full px-4 py-2 bg-gray-900 text-white hover:bg-[#c8922a] transition-colors text-center"
                     style={{ fontFamily: "'Cinzel', serif", fontSize: 11, letterSpacing: "0.14em" }}
                   >
                     VIEW DETAILS
-                  </a>
+                  </Link>
                   {getProductPdfHref(item) ? (
-                    <a
-                      href={getProductPdfHref(item)}
+                    <Link
+                      to={getProductPdfHref(item)}
+                      state={{ fromProducts: true, backDelta: -1 }}
                       className="rounded-full px-4 py-2 bg-[#c8922a] text-white hover:bg-gray-900 transition-colors text-center shadow-sm"
                       style={{ fontFamily: "'Cinzel', serif", fontSize: 11, letterSpacing: "0.14em" }}
                     >
                       OPEN PDF
-                    </a>
+                    </Link>
                   ) : null}
                 </div>
               </div>

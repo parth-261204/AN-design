@@ -1,9 +1,11 @@
 import { useMemo, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { productDocumentSlides } from "../data/productDocumentSlides.js";
 
 export default function ProductDocumentSlideshow() {
   const { slug } = useParams();
+  const location = useLocation();
+  const navigate = useNavigate();
   const documentData = productDocumentSlides[slug];
   const slides = documentData?.slides ?? [];
   const pdf = documentData?.pdf;
@@ -24,6 +26,14 @@ export default function ProductDocumentSlideshow() {
 
   const goToNext = () => {
     setCurrentSlideIndex((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+  };
+  const goBackHome = () => {
+    if (typeof location.state?.backDelta === "number") {
+      navigate(location.state.backDelta);
+      return;
+    }
+
+    navigate("/");
   };
 
   if (!documentData) {
@@ -67,13 +77,14 @@ export default function ProductDocumentSlideshow() {
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-3">
-            <Link
-              to="/"
+            <button
+              type="button"
+              onClick={goBackHome}
               className="rounded-full border border-[#2b2419] px-6 py-2 text-sm font-semibold text-[#2b2419] transition-colors hover:bg-[#2b2419] hover:text-white"
               style={{ fontFamily: "'Cinzel',serif", letterSpacing: "0.08em" }}
             >
               Back to Home
-            </Link>
+            </button>
             {sourceLinks.map((source) => (
               <a
                 key={source.href}
