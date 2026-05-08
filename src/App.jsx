@@ -66,6 +66,7 @@ const ANDesignsPage = () => {
   const [email, setEmail] = useState("");
   const [aboutIndex, setAboutIndex] = useState(0);
   const [reviewIndex, setReviewIndex] = useState(0);
+  const [isNavbarVisible, setIsNavbarVisible] = useState(false);
   const navSuggestions = useProductSuggestions(navSearch);
   const heroSuggestions = useProductSuggestions(heroSearch);
   const navigate = useNavigate();
@@ -165,6 +166,17 @@ const ANDesignsPage = () => {
     return () => clearInterval(timer);
   }, [reviewSlides.length]);
 
+  useEffect(() => {
+    const updateNavbarVisibility = () => {
+      setIsNavbarVisible(window.scrollY > 80);
+    };
+
+    updateNavbarVisibility();
+    window.addEventListener("scroll", updateNavbarVisibility, { passive: true });
+
+    return () => window.removeEventListener("scroll", updateNavbarVisibility);
+  }, []);
+
   return (
     <div className="font-serif bg-white text-gray-900 min-h-screen" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
       <section
@@ -174,7 +186,7 @@ const ANDesignsPage = () => {
           background: `linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=1400&q=80') center/cover no-repeat`,
         }}
       >
-        <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between flex-wrap gap-4 px-8 py-4 border-b border-white/20" style={{ background: "rgba(0,0,0,0.35)", backdropFilter: "blur(8px)" }}>
+        <nav className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between flex-wrap gap-4 px-8 py-4 border-b border-white/20 transition-all duration-300 ${isNavbarVisible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none"}`} style={{ background: "rgba(0,0,0,0.35)", backdropFilter: "blur(8px)" }}>
           <div className="flex flex-col items-center">
             <div className="w-16 h-16 rounded-full flex items-center justify-center border-2" style={{ background: "radial-gradient(circle,#2a1800,#1a0e00)", borderColor: "#c8922a" }}>
               <span style={{ fontFamily: "'Playfair Display',serif", fontSize: 20, fontWeight: 900, color: "#c8922a" }}>AN</span>
